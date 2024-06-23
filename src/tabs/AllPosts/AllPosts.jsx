@@ -68,27 +68,27 @@ const posts = [
 
 const AllPosts = () => {
   return (
-    <section className="px-4 mb-12">
+    <section className="px-4 mb-12 cursor-grab">
       <div className="max-w-5xl mx-auto ">
+
         <div className="grid grid-cols-9 gap-24">
-          <div className="col-span-6 space-y-4">
+
+          <div className="col-span-6 space-y-4 max-h-[70dvh] overflow-y-scroll no-scrollbar">
             {posts?.map((post) => (
               <Post key={post.id}  post={post}/>
             ))}
           </div>
 
-          <aside className="col-span-3">
+          <aside className="col-span-3 mt-12">
             <div className="border-b pb-2.5 flex items-center gap-1 justify-between">
               <div>
                 <MdOutlineLocationOn className="text-xl" />
               </div>
-
               <input
                 type="text"
                 className=" w-full focus:outline-none text-[14px] font-medium"
                 placeholder="Nodia, India"
               />
-
               <div>
                 <img className="cursor-pointer" src={penIcon} alt="" />
               </div>

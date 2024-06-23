@@ -3,7 +3,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import downArrow from "../../../assets/images/icons/down-arrow.svg";
 const Navbar = () => {
   return (
-    <nav className="py-5 bg-white sticky top-0">
+    <nav className="py-5 bg-white sticky top-0 z-50 ">
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="cursor-pointer">
           <img src={logo} alt="Logo" />
