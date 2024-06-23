@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tab-menu >li>a.active{
+    color: black;
+    border-bottom: 1px solid black ;
+    border-block-end-width: 1px;
+}

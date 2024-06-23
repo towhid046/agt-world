@@ -1,6 +1,6 @@
 import logo from "../../../assets/images/icons/logo.svg";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { AiOutlineSearch } from "react-icons/ai";
+import downArrow from "../../../assets/images/icons/down-arrow.svg";
 const Navbar = () => {
   return (
     <nav className="py-5 bg-white sticky top-0">
@@ -28,7 +28,7 @@ const Navbar = () => {
               Create Account.{" "}
             </span>
             <span className="font-bold text-color-primary"> It's free!</span>
-            <IoMdArrowDropdown className="text-xl" />
+            <img src={downArrow} alt="" />
           </button>
         </div>
       </div>
