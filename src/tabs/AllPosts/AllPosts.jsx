@@ -68,7 +68,7 @@ const posts = [
 
 const AllPosts = () => {
   return (
-    <section className="px-4 mb-12 cursor-grab">
+    <section className="px-4 mb-12">
       <div className="max-w-5xl mx-auto ">
 
         <div className="grid grid-cols-9 gap-24">

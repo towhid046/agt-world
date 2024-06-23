@@ -11,7 +11,7 @@ const tabs = [
 
 const NavTab = () => {
   return (
-   <nav className="px-4 pb-3 py-10 sticky top-20 border-t bg-white z-50">
+   <nav className="px-4 pb-3 py-10 sticky top-20 border-t bg-white z-20">
      <div className="max-w-5xl mx-auto    flex justify-between ">
       <ul className="flex items-center tab-menu border-b gap-5">
         {tabs?.map((tab) => (
