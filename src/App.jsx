@@ -1,10 +1,12 @@
-import Navbar from './components/shared/Navbar/Navbar';
+import Navbar from "./components/shared/Navbar/Navbar";
+import Hero from "./components/unique/Hero/Hero";
 const App = () => {
   return (
     <>
-    <Navbar/>
+      <Navbar />
+      <Hero />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
