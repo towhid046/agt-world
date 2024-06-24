@@ -13,6 +13,7 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import Post from "./Post/Post";
 import useAuth from "../../hooks/useAuth";
 import RecommendedGroups from "./RecommendedGroups/RecommendedGroups";
+import CreatePostIconFixed from "./../../components/unique/CreatePostIconFixed/CreatePostIconFixed";
 
 const posts = [
   {
@@ -74,14 +75,14 @@ const AllPosts = () => {
   return (
     <section className="px-4 mb-12">
       <div className="max-w-5xl mx-auto ">
-        <div className="grid grid-cols-9 gap-24">
-          <div className="col-span-6 space-y-4 max-h-[70dvh] overflow-y-scroll no-scrollbar">
+        <div className="lg:grid grid-cols-9 gap-24">
+          <div className="col-span-6 space-y-4 lg:max-h-[65dvh] overflow-y-scroll no-scrollbar">
             {posts?.map((post) => (
               <Post key={post.id} post={post} />
             ))}
           </div>
 
-          <aside className="col-span-3 mt-12">
+          <aside className="lg:block hidden col-span-3 mt-12">
             <div className="border-b pb-2.5 flex items-center gap-1 justify-between">
               <div>
                 <MdOutlineLocationOn className="text-xl" />
@@ -113,6 +114,9 @@ const AllPosts = () => {
           </aside>
         </div>
       </div>
+
+      {/* fixed create post button for mobile and tabs */}
+      <CreatePostIconFixed />
     </section>
   );
 };

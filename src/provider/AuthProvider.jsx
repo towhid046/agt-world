@@ -15,6 +15,7 @@ export const UserContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -58,6 +59,8 @@ const AuthProvider = ({ children }) => {
     loading,
     updateUserProfile,
     logInWithGoogle,
+    setIsModalOpen,
+    isModalOpen,
   };
 
   return (

@@ -2,12 +2,15 @@ import logo from "../../../assets/images/icons/logo.svg";
 import { AiOutlineSearch } from "react-icons/ai";
 import downArrow from "../../../assets/images/icons/down-arrow.svg";
 import { useState } from "react";
-import SignUp from "./../../unique/SignUp/SignUp";
 import useAuth from "../../../hooks/useAuth";
 import swal from "sweetalert";
+import smNavShape1 from "../../../assets/images/icons/sm-nav-shape1.svg";
+import smNavShape2 from "../../../assets/images/icons/sm-nav-shape2.svg";
+import smNavShape3 from "../../../assets/images/icons/sm-nav-shape3.svg";
+import CreateAccount from "../../unique/CreateAccount/CreateAccount";
 const Navbar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { user, logOutUser } = useAuth();
+  const { user, logOutUser, isModalOpen, setIsModalOpen } = useAuth();
+  const [isHover, setIsHover] = useState(false);
 
   const handleLogOutUser = async () => {
     try {
@@ -20,13 +23,14 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="py-5 bg-white sticky top-0 z-20 ">
-        <div className="container mx-auto px-4 flex justify-between items-center">
+      <nav className="py-5 bg-white sticky top-0 z-20 px-4 ">
+        {/* for desktop */}
+        <div className="md:flex hidden container mx-auto justify-between items-center">
           <div className="cursor-pointer">
             <img src={logo} alt="Logo" />
           </div>
 
-          <div className="w-[360px] py-3 bg-color-gray px-5 rounded-full">
+          <div className="w-[360px] lg:block hidden py-3 bg-color-gray px-5 rounded-full">
             <div className="flex items-center bg-color-gray">
               <div className="mr-3">
                 <AiOutlineSearch className="text-xl" />
@@ -42,7 +46,10 @@ const Navbar = () => {
           <div>
             {user ? (
               <div className="user-menu relative ">
-                <div className=" flex items-center gap-3 relative cursor-pointer">
+                <div
+                  onMouseOver={() => setIsHover(!isHover)}
+                  className=" flex items-center gap-3 relative cursor-pointer"
+                >
                   <img
                     className="w-9 h-9 rounded-full"
                     src={user?.photoURL}
@@ -84,10 +91,21 @@ const Navbar = () => {
             )}
           </div>
         </div>
+
+        {/* for mobile devices */}
+        <div className="flex md:hidden gap-3 justify-end">
+          <img src={smNavShape1} alt="" />
+          <img src={smNavShape2} alt="" />
+          <img src={smNavShape3} alt="" />
+        </div>
       </nav>
+
       {/* sing up form */}
       {isModalOpen && (
-        <SignUp isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <CreateAccount
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+        />
       )}
     </>
   );
