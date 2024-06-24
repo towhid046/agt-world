@@ -4,6 +4,7 @@ import downArrow from "../../../assets/images/icons/down-arrow.svg";
 import { useState } from "react";
 import SignUp from "./../../unique/SignUp/SignUp";
 import useAuth from "../../../hooks/useAuth";
+import swal from "sweetalert";
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user, logOutUser } = useAuth();
@@ -11,6 +12,7 @@ const Navbar = () => {
   const handleLogOutUser = async () => {
     try {
       await logOutUser();
+      swal("Log Out success", "User logout success", "success");
     } catch (error) {
       console.error(error.message);
     }
@@ -51,7 +53,7 @@ const Navbar = () => {
                   </span>
                   <img src={downArrow} alt="" />
                 </div>
-                <ul className="user-profile z-50  absolute top-8  right-0 bg-white px-10 py-5 space-y-2 font-semibold">
+                <ul className="user-profile z-50  absolute top-8 rounded-tl-2xl right-0 bg-white px-10 py-5 space-y-2 font-semibold">
                   <li className="hover:text-color-primary">
                     <button>Profile</button>
                   </li>

@@ -31,7 +31,8 @@ const SignUp = ({ setIsModalOpen, isModalOpen }) => {
   const [isShowPass, setIsShowPass] = useState(false);
   const [isToggle, setIsToggle] = useState(false);
   const { register, handleSubmit } = useForm();
-  const { createUser, logInWithGoogle } = useAuth();
+  const { createUser, logInWithGoogle, updateUserProfile, loginUser } =
+    useAuth();
 
   const handleSignUpFormSubmission = async (data) => {
     if (data.password !== data.confirmPassword) {
@@ -42,8 +43,25 @@ const SignUp = ({ setIsModalOpen, isModalOpen }) => {
       );
     }
 
+    const name = `${data.firstName} ${data.lastName}`;
+    const photoUrl = `https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=600`;
+
     try {
+      setIsModalOpen(false);
       await createUser(data?.email, data?.password);
+      await updateUserProfile(name, photoUrl);
+      swal("Success", "User login success", "success");
+    } catch (error) {
+      swal("Opps!", `${error.message}`, "error");
+      console.error(error.message);
+    }
+  };
+
+  const handleSignInFormSubmission = async (data) => {
+    try {
+      setIsModalOpen(false);
+      await loginUser(data?.email, data?.password);
+      swal("Success", "User login success", "success");
     } catch (error) {
       console.error(error.message);
     }
@@ -53,6 +71,8 @@ const SignUp = ({ setIsModalOpen, isModalOpen }) => {
   const handleLogInUserWithGoogle = async () => {
     try {
       await logInWithGoogle();
+      setIsModalOpen(false);
+      swal("Success", "User login success", "success");
     } catch (error) {
       console.error(error.message);
     }
@@ -98,11 +118,12 @@ const SignUp = ({ setIsModalOpen, isModalOpen }) => {
           <div className="flex items-center gap-5 justify-between px-12 pb-12 pt-6">
             {/* sing In form */}
             <div className="flex-1">
-              <form action="">
+              <form onSubmit={handleSubmit(handleSignInFormSubmission)} action="">
                 <div className="grid grid-cols-2">
                   {formData2?.map((data) => (
                     <div key={data.id} className={`relative col-span-2 w-full`}>
                       <input
+                        {...register(data.name)}
                         className={`
                           ${
                             data.placeholder === "Email" &&
@@ -139,7 +160,7 @@ const SignUp = ({ setIsModalOpen, isModalOpen }) => {
 
                 <div className="mt-5">
                   <input
-                    className="w-full text-[14px] text-white font-semibold rounded-full py-3 bg-color-primary"
+                    className="w-full cursor-pointer text-[14px] text-white font-semibold rounded-full py-3 bg-color-primary"
                     type="submit"
                     value="Sign In"
                   />
@@ -154,7 +175,10 @@ const SignUp = ({ setIsModalOpen, isModalOpen }) => {
                   </span>
                 </button>
 
-                <button className="w-full flex items-center gap-4 justify-center border rounded py-2.5">
+                <button
+                  onClick={handleLogInUserWithGoogle}
+                  className="w-full flex items-center gap-4 justify-center border rounded py-2.5"
+                >
                   <img src={googleIcon} alt="" />
                   <span className="text-[14px] font-normal">
                     Sign In with Google
@@ -162,7 +186,7 @@ const SignUp = ({ setIsModalOpen, isModalOpen }) => {
                 </button>
 
                 <div className="text-center pt-3">
-                  <button className="text-xs font-medium">
+                  <button className="text-xs font-medium hover:underline">
                     Forget Password
                   </button>
                 </div>
@@ -228,7 +252,7 @@ const SignUp = ({ setIsModalOpen, isModalOpen }) => {
 
                 <div className="mt-5">
                   <input
-                    className="w-full text-[14px] text-white font-semibold rounded-full py-3 bg-color-primary"
+                    className="w-full cursor-pointer text-[14px] text-white font-semibold rounded-full py-3 bg-color-primary"
                     type="submit"
                     value="Create Account"
                   />

@@ -7,9 +7,12 @@ import authorImg3 from "../../assets/images/all-posts/author-3.jpeg";
 import authorImg4 from "../../assets/images/all-posts/author-4.jpeg";
 
 import penIcon from "../../assets/images/icons/pen.svg";
+import crouseIcon from "../../assets/images/icons/crouse.svg";
 import infoIcon from "../../assets/images/icons/info.svg";
 import { MdOutlineLocationOn } from "react-icons/md";
-import Post from './Post/Post';
+import Post from "./Post/Post";
+import useAuth from "../../hooks/useAuth";
+import RecommendedGroups from "./RecommendedGroups/RecommendedGroups";
 
 const posts = [
   {
@@ -67,15 +70,14 @@ const posts = [
 ];
 
 const AllPosts = () => {
+  const { user } = useAuth();
   return (
     <section className="px-4 mb-12">
       <div className="max-w-5xl mx-auto ">
-
         <div className="grid grid-cols-9 gap-24">
-
           <div className="col-span-6 space-y-4 max-h-[70dvh] overflow-y-scroll no-scrollbar">
             {posts?.map((post) => (
-              <Post key={post.id}  post={post}/>
+              <Post key={post.id} post={post} />
             ))}
           </div>
 
@@ -87,10 +89,15 @@ const AllPosts = () => {
               <input
                 type="text"
                 className=" w-full focus:outline-none text-[14px] font-medium"
-                placeholder="Nodia, India"
+                placeholder={user ? "Enter your location" : "Nodia, India"}
+                disabled={!user}
               />
               <div>
-                <img className="cursor-pointer" src={penIcon} alt="" />
+                <img
+                  className="cursor-pointer"
+                  src={user ? crouseIcon : penIcon}
+                  alt=""
+                />
               </div>
             </div>
 
@@ -101,6 +108,8 @@ const AllPosts = () => {
                 personalised experience.
               </small>
             </div>
+
+            {user && <RecommendedGroups />}
           </aside>
         </div>
       </div>
