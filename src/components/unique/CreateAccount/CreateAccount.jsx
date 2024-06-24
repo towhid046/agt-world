@@ -12,7 +12,7 @@ const CreateAccount = () => {
 
   return (
     <section className="fixed bg-black bg-opacity-70 w-full lg:top-0 bottom-0 flex justify-center md:items-center items-end min-h-screen z-50">
-      <div className="rounded-lg relative bg-white">
+      <div className="rounded-lg relative bg-white lg:min-w-max md:min-w-[75%] min-w-[97%]">
         {/* close button */}
         <div className="lg:absolute lg:-top-9 lg:-right-3 ">
           <button onClick={() => setIsModalOpen(!isModalOpen)}>
@@ -51,6 +51,7 @@ const CreateAccount = () => {
             </button>
           </div>
         </div>
+
         {isToggle ? (
           <SignIn setIsToggle={setIsToggle} isToggle={isToggle} />
         ) : (

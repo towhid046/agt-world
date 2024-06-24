@@ -9,7 +9,7 @@ import { PiBagSimple } from "react-icons/pi";
 
 const Post = ({ post }) => {
   return (
-    <article key={post.id} className="border rounded">
+    <article key={post.id} className="border rounded mb-5">
       <figure className="rounded-t">
         <img className="w-full rounded-t" src={post?.bannerImg} alt="" />
       </figure>

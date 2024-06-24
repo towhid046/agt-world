@@ -39,9 +39,9 @@ const SignIn = ({ setIsToggle, isToggle }) => {
   };
 
   return (
-    <div className="flex items-center gap-5 justify-between px-6 md:px-12 pb-12 lg:pt-6 pt-4">
+    <div className="flex items-center gap-5 justify-between px-6 md:px-12 md:pb-12 pb-16 lg:pt-6 pt-4 w-full">
       {/* sing In form */}
-      <div className="flex-1">
+      <div className="lg:flex-1 w-full">
         <form onSubmit={handleSubmit(handleSignInFormSubmission)} action="">
           <div className="grid grid-cols-2">
             {formData2?.map((data) => (
@@ -83,17 +83,32 @@ const SignIn = ({ setIsToggle, isToggle }) => {
             ))}
           </div>
 
-          <div className="mt-5">
+          <div className="mt-5 lg:block flex justify-between  gap-5">
             <input
-              className="w-full cursor-pointer text-[14px] text-white font-semibold rounded-full py-3 bg-color-primary"
+              className="lg:w-full cursor-pointer text-[14px] text-white font-semibold rounded-full md:py-3 px-6 py-2.5  bg-color-primary"
               type="submit"
               value="Sign In"
             />
+            <button
+              onClick={() => setIsToggle(!isToggle)}
+              className="underline lg:hidden text-[13px] font-medium"
+            >
+              Or, Create Account
+            </button>
           </div>
         </form>
 
         <div className="mt-6 space-y-2">
-          <button className="w-full flex items-center gap-4 justify-center border rounded py-2.5">
+          <button
+            onClick={() =>
+              swal(
+                "Sorry!!",
+                "Currently Facebook sign In not available, Try so sing In with  google or email",
+                "info"
+              )
+            }
+            className="w-full flex items-center gap-4 justify-center border rounded py-2.5"
+          >
             <img src={facebookIcon} alt="" />
             <span className="text-[14px] font-normal">
               Sign In with Facebook
@@ -118,7 +133,7 @@ const SignIn = ({ setIsToggle, isToggle }) => {
 
       {/* sing in image */}
 
-      <div className="flex flex-1 flex-col justify-center items-center">
+      <div className="lg:flex hidden lg:flex-1 flex-col justify-center items-center">
         <img className="mb-3 " src={singUpImg} alt="Sign up img" />
       </div>
     </div>

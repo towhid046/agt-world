@@ -10,12 +10,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;  
   }
-  
 
-.tab-menu >li>a.active{
-    color: black;
-    border-bottom: 1px solid black ;
-}
 .user-menu .user-profile{
   visibility: hidden;
   opacity: 0;

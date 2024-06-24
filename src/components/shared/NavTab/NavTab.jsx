@@ -36,6 +36,7 @@ const NavTab = () => {
             </li>
           ))}
         </ul>
+        
         <div className="flex items-center gap-4 border-b flex-1 justify-end pb-2.5">
           <button className="flex items-center gap-2 py-2 px-3 bg-color-gray font-medium rounded-[4px]">
             <span>Write a Post</span>

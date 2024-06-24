@@ -60,9 +60,9 @@ const SignUp = ({ setIsToggle, isToggle }) => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-5 justify-between px-6 md:px-12 md:pb-12 pb-6 lg:pt-6 pt-4 ">
+    <div className="flex flex-col lg:flex-row items-center gap-5 justify-between px-6 md:px-12 lg:pb-12 pb-6 lg:pt-6 pt-4 w-full ">
       {/* sing up form */}
-      <div>
+      <div className="lg:flex-1 w-full">
         <form onSubmit={handleSubmit(handleSignUpFormSubmission)}>
           <div className="grid grid-cols-2">
             {formData?.map((data) => (
@@ -126,7 +126,9 @@ const SignUp = ({ setIsToggle, isToggle }) => {
         </form>
 
         <div className="mt-6 space-y-2">
-          <button className="w-full flex items-center gap-5 justify-center border rounded py-2.5">
+          <button
+          onClick={()=>swal('Sorry!!', 'Currently Facebook sign up not available, Try so sing up with  google or email', 'info')}
+          className="w-full flex items-center gap-5 justify-center border rounded py-2.5">
             <img src={facebookIcon} alt="" />
             <span className="text-[14px] font-normal">
               Sign up with Facebook
@@ -145,8 +147,13 @@ const SignUp = ({ setIsToggle, isToggle }) => {
 
       {/* sing up image */}
 
-      <div className="flex flex-col justify-center items-center">
-        <img className="mb-3 lg:block hidden" src={singUpImg} alt="Sign up img" />
+      <div className="lg:flex flex-col lg:flex-1 justify-center items-center">
+        <img
+          className="mb-3 lg:block hidden"
+          src={singUpImg}
+          alt="Sign up img"
+        />
+
         <p className="font-normal text-[11px]">
           By signing up, you agree to our Terms & conditions, Privacy policy
         </p>
