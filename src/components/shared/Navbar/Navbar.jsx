@@ -3,8 +3,19 @@ import { AiOutlineSearch } from "react-icons/ai";
 import downArrow from "../../../assets/images/icons/down-arrow.svg";
 import { useState } from "react";
 import SignUp from "./../../unique/SignUp/SignUp";
+import useAuth from "../../../hooks/useAuth";
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user, logOutUser } = useAuth();
+
+  const handleLogOutUser = async () => {
+    try {
+      await logOutUser();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <>
       <nav className="py-5 bg-white sticky top-0 z-20 ">
@@ -27,16 +38,48 @@ const Navbar = () => {
           </div>
 
           <div>
-            <button
-              onClick={() => setIsModalOpen(!isModalOpen)}
-              className="flex items-center gap-1"
-            >
-              <span className="font-medium text-color-text">
-                Create Account.{" "}
-              </span>
-              <span className="font-bold text-color-primary"> It's free!</span>
-              <img src={downArrow} alt="" />
-            </button>
+            {user ? (
+              <div className="user-menu relative ">
+                <div className=" flex items-center gap-3 relative cursor-pointer">
+                  <img
+                    className="w-9 h-9 rounded-full"
+                    src={user?.photoURL}
+                    alt=""
+                  />
+                  <span className="font-medium text-color-text">
+                    {user?.displayName}
+                  </span>
+                  <img src={downArrow} alt="" />
+                </div>
+                <ul className="user-profile z-50  absolute top-8  right-0 bg-white px-10 py-5 space-y-2 font-semibold">
+                  <li className="hover:text-color-primary">
+                    <button>Profile</button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleLogOutUser}
+                      className="text-color-secondary"
+                    >
+                      Log Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <button
+                onClick={() => setIsModalOpen(!isModalOpen)}
+                className="flex items-center gap-1"
+              >
+                <span className="font-medium text-color-text">
+                  Create Account.{" "}
+                </span>
+                <span className="font-bold text-color-primary">
+                  {" "}
+                  It's free!
+                </span>
+                <img src={downArrow} alt="" />
+              </button>
+            )}
           </div>
         </div>
       </nav>

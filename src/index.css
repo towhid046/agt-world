@@ -16,3 +16,17 @@
     color: black;
     border-bottom: 1px solid black ;
 }
+.user-menu .user-profile{
+  visibility: hidden;
+  opacity: 0;
+}
+.user-menu:hover .user-profile{
+  opacity: 1;
+  visibility: visible;
+  transition: .5s;
+}
+.user-profile:hover{
+  opacity: 1;
+  visibility: visible;
+  transition: .5s;
+}
